@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TraceText | Plagiarism Detection Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">T</span> TraceText</a>
+    <span class="top-label">DAA CAPSTONE PROJECT</span>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> STRING MATCHING ALGORITHM LAB</div>
+      <h1>Find the overlap.<br><span>Understand the match.</span></h1>
+      <p>Compare two documents with three classic string-matching algorithms. Inspect matching phrases, similarity coverage and execution time.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div><span class="step">01</span><h2>Document comparison</h2></div>
+        <button class="text-button" id="sampleBtn" type="button">Load sample documents ↗</button>
+      </div>
+      <div class="documents">
+        <label class="document-card">
+          <span class="doc-title"><span class="doc-dot blue"></span> DOCUMENT A <small>Reference text</small></span>
+          <textarea id="textA" placeholder="Paste your original/reference document here..."></textarea>
+          <span class="word-count" id="countA">0 words</span>
+        </label>
+        <label class="document-card">
+          <span class="doc-title"><span class="doc-dot violet"></span> DOCUMENT B <small>Text to compare</small></span>
+          <textarea id="textB" placeholder="Paste the document you want to check..."></textarea>
+          <span class="word-count" id="countB">0 words</span>
+        </label>
+      </div>
+      <div class="controls">
+        <label>ALGORITHM
+          <select id="algorithm">
+            <option value="all">Compare all three</option>
+            <option value="naive">Naïve Pattern Matching</option>
+            <option value="rabin_karp">Rabin–Karp</option>
+            <option value="kmp">Knuth–Morris–Pratt (KMP)</option>
+          </select>
+        </label>
+        <label>PHRASE LENGTH
+          <select id="ngram">
+            <option value="3">3 words</option><option value="4">4 words</option>
+            <option value="5" selected>5 words</option><option value="6">6 words</option>
+            <option value="7">7 words</option><option value="8">8 words</option>
+            <option value="10">10 words</option><option value="12">12 words</option>
+          </select>
+        </label>
+        <button class="run-button" id="runBtn" type="button"><span>Run analysis</span><b>→</b></button>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </section>
+
+    <section class="results hidden" id="results">
+      <div class="section-heading result-heading"><div><span class="step">02</span><h2>Analysis results</h2></div><span class="live-tag">ANALYSIS COMPLETE</span></div>
+      <div class="score-grid">
+        <article class="score-card primary-score"><span>OVERALL SIMILARITY</span><strong id="similarity">0%</strong><div class="meter"><i id="meterFill"></i></div><small>Average coverage across both documents</small></article>
+        <article class="score-card"><span>MATCHED PHRASES</span><strong id="matched">0</strong><small id="phraseSub">Unique matching phrases</small></article>
+        <article class="score-card"><span>DOCUMENT A COVERAGE</span><strong id="coverageA">0%</strong><small>Reference phrases found in B</small></article>
+        <article class="score-card"><span>DOCUMENT B COVERAGE</span><strong id="coverageB">0%</strong><small>B phrases found in A</small></article>
+      </div>
+      <div class="section-heading algo-heading"><div><span class="step">03</span><h2>Algorithm performance</h2></div></div>
+      <div class="algorithm-grid" id="algorithmGrid"></div>
+      <div class="matches-panel">
+        <div class="matches-head"><div><h3>Matching phrases</h3><p>Exact consecutive word sequences found in both documents</p></div><span id="matchCount">0 MATCHES</span></div>
+        <div id="matchesList" class="matches-list"></div>
+      </div>
+      <p class="notice" id="notice"></p>
+    </section>
+    <footer><span>TRACETEXT · DAA CAPSTONE</span><span>Naïve · Rabin–Karp · KMP</span></footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
