@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TraceText | Plagiarism Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">T</span> TraceText</a>
+    <span class="tagline">Simple text similarity checker</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">DAA MINI PROJECT</p>
+      <h1>Compare documents.<br><span>Find what matches.</span></h1>
+      <p class="intro">Paste text or upload .txt files. TraceText compares shared phrases using classic string-matching algorithms.</p>
+    </section>
+
+    <section class="controls">
+      <div class="field">
+        <label for="algorithm">Matching algorithm</label>
+        <select id="algorithm">
+          <option value="naive">Naive String Matching</option>
+          <option value="rabin">Rabin–Karp</option>
+          <option value="kmp">Knuth–Morris–Pratt (KMP)</option>
+        </select>
+      </div>
+      <div class="field ngram-field">
+        <label for="phraseLength">Phrase length <span id="phraseValue">5 words</span></label>
+        <input id="phraseLength" type="range" min="2" max="12" value="5">
+      </div>
+    </section>
+
+    <section class="documents">
+      <article class="document-card">
+        <div class="card-heading">
+          <div><span class="doc-number">01</span><h2>Document A</h2></div>
+          <label class="upload-button" for="fileA">Upload .txt</label>
+          <input class="file-input" id="fileA" type="file" accept=".txt,text/plain">
+        </div>
+        <textarea id="textA" placeholder="Paste the first document here..."></textarea>
+        <div class="card-footer"><span id="countA">0 words</span><button class="text-button" id="clearA" type="button">Clear</button></div>
+      </article>
+
+      <article class="document-card">
+        <div class="card-heading">
+          <div><span class="doc-number">02</span><h2>Document B</h2></div>
+          <label class="upload-button" for="fileB">Upload .txt</label>
+          <input class="file-input" id="fileB" type="file" accept=".txt,text/plain">
+        </div>
+        <textarea id="textB" placeholder="Paste the second document here..."></textarea>
+        <div class="card-footer"><span id="countB">0 words</span><button class="text-button" id="clearB" type="button">Clear</button></div>
+      </article>
+    </section>
+
+    <div class="action-row">
+      <p id="status" role="status">Add text to both documents to begin.</p>
+      <button id="compareBtn" class="primary-button" type="button">Compare documents <span aria-hidden="true">→</span></button>
+    </div>
+
+    <section id="results" class="results hidden" aria-live="polite">
+      <div class="results-heading"><div><p class="eyebrow">COMPARISON REPORT</p><h2>Results</h2></div><span id="algorithmUsed" class="algorithm-pill"></span></div>
+      <div class="stats">
+        <div class="stat-card similarity-card"><span>Text similarity</span><strong id="similarity">0%</strong><div class="progress"><span id="progressFill"></span></div></div>
+        <div class="stat-card"><span>Shared phrases</span><strong id="sharedCount">0</strong></div>
+        <div class="stat-card"><span>Unique phrases checked</span><strong id="checkedCount">0</strong></div>
+      </div>
+      <div class="matches-panel">
+        <div class="matches-title"><h3>Matching phrases</h3><span id="matchHint"></span></div>
+        <ul id="matchesList" class="matches-list"></ul>
+      </div>
+      <p class="disclaimer">This is an educational text-similarity tool, not a definitive plagiarism verdict. Results depend on phrase length and exact wording.</p>
+    </section>
+
+    <footer>TraceText · Design and Algorithms project · Runs entirely in your browser</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
